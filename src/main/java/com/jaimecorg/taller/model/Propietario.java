@@ -18,6 +18,9 @@ public class Propietario {
     private String nombre;
     private String apellidos;
     private Date fechaNacimiento;
+    private int telefono;
+    private String direccion;
+    private String email;
 
     @OneToMany(mappedBy = "propietario")
     private Set<Vehiculo> vehiculo;
@@ -30,12 +33,18 @@ public class Propietario {
         this.codigo = codigo;
     }
 
-    public Propietario(int codigo, String dni, String nombre, String apellidos, Date fechaNacimiento) {
+
+    public Propietario(int codigo, String dni, String nombre, String apellidos, Date fechaNacimiento, int telefono,
+            String direccion, String email, Set<Vehiculo> vehiculo) {
         this.codigo = codigo;
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.email = email;
+        this.vehiculo = vehiculo;
     }
 
     public int getCodigo() {
@@ -76,6 +85,38 @@ public class Propietario {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Set<Vehiculo> getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Set<Vehiculo> vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     @Override

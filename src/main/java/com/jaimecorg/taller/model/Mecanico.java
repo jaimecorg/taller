@@ -1,15 +1,13 @@
 package com.jaimecorg.taller.model;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
+import javax.persistence.Transient;
 
 @Entity
 public class Mecanico {
@@ -21,8 +19,11 @@ public class Mecanico {
     private String nombre;
     private String apellidos;
     private Date fechaNacimiento;
+    private int telefono;
+    private String direccion;
     
-    @ManyToMany(cascade = {
+    /*
+     @ManyToMany(cascade = {
         CascadeType.PERSIST,
         CascadeType.MERGE
     })
@@ -32,6 +33,11 @@ public class Mecanico {
             inverseJoinColumns = {@JoinColumn(name = "vehiculo_codigo")}
     )
     private Set<Vehiculo> vehiculos;
+     */
+    
+
+    @Transient
+    private List<Reparacion> reparaciones;
 
     public Mecanico() {
     }
@@ -40,12 +46,16 @@ public class Mecanico {
         this.codigo = codigo;
     }
 
-    public Mecanico(int codigo, String dni, String nombre, String apellidos, Date fechaNacimiento) {
+    public Mecanico(int codigo, String dni, String nombre, String apellidos, Date fechaNacimiento, int telefono,
+            String direccion, List<Reparacion> reparaciones) {
         this.codigo = codigo;
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.reparaciones = reparaciones;
     }
 
     public int getCodigo() {
@@ -88,6 +98,22 @@ public class Mecanico {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -110,12 +136,23 @@ public class Mecanico {
         return true;
     }
 
-    public Set<Vehiculo> getVehiculos() {
+    /*
+     public Set<Vehiculo> getVehiculos() {
         return vehiculos;
     }
 
     public void setVehiculos(Set<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
+    }
+     */
+    
+
+    public List<Reparacion> getReparaciones() {
+        return reparaciones;
+    }
+
+    public void setReparaciones(List<Reparacion> reparaciones) {
+        this.reparaciones = reparaciones;
     }
 
  

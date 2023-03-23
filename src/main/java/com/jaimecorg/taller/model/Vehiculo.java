@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vehiculo {
@@ -23,14 +23,22 @@ public class Vehiculo {
     private String modelo;
     private String color;
     private String tipo;
+    private int kilometros;
 
     @ManyToOne
     @JoinColumn(name="propietario", nullable = false)
     private Propietario propietario;
     
-    @ManyToMany(mappedBy = "vehiculos")
+    /*
+     @ManyToMany(mappedBy = "vehiculos")
     private Set<Mecanico> mecanicos;
+     */
     
+    
+    @OneToMany(mappedBy = "vehiculo")
+    private Set<Reparacion> reparaciones;
+    
+
     public Vehiculo() {
         this.propietario = new Propietario();
     }
@@ -40,7 +48,8 @@ public class Vehiculo {
     }
 
     public Vehiculo(int codigo, String matricula, String numBastidor, Date fechaMatricuacion, String marca,
-            String modelo, String color, String tipo, Propietario propietario) {
+            String modelo, String color, String tipo, int kilometros, Propietario propietario,
+            Set<Reparacion> reparaciones) {
         this.codigo = codigo;
         this.matricula = matricula;
         this.numBastidor = numBastidor;
@@ -49,7 +58,9 @@ public class Vehiculo {
         this.modelo = modelo;
         this.color = color;
         this.tipo = tipo;
+        this.kilometros = kilometros;
         this.propietario = propietario;
+        this.reparaciones = reparaciones;
     }
 
     public int getCodigo() {
@@ -116,6 +127,22 @@ public class Vehiculo {
         this.tipo = tipo;
     }
 
+    public int getKilometros() {
+        return kilometros;
+    }
+
+    public void setKilometros(int kilometros) {
+        this.kilometros = kilometros;
+    }
+
+    public Set<Reparacion> getReparaciones() {
+        return reparaciones;
+    }
+
+    public void setReparaciones(Set<Reparacion> reparaciones) {
+        this.reparaciones = reparaciones;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -146,12 +173,15 @@ public class Vehiculo {
         this.propietario = propietario;
     }
 
-    public Set<Mecanico> getMecanicos() {
+    /*
+     public Set<Mecanico> getMecanicos() {
         return mecanicos;
     }
 
     public void setMecanicos(Set<Mecanico> mecanicos) {
         this.mecanicos = mecanicos;
     }
+     */
+    
     
 }
