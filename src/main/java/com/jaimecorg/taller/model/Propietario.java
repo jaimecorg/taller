@@ -32,8 +32,7 @@ public class Propietario {
     public Propietario(int codigo) {
         this.codigo = codigo;
     }
-
-
+    
     public Propietario(int codigo, String dni, String nombre, String apellidos, Date fechaNacimiento, int telefono,
             String direccion, String email, Set<Vehiculo> vehiculo) {
         this.codigo = codigo;
