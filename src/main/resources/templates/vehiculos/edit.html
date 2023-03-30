@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/header :: header"></head>
+<body>
+    <div th:replace="commons/menu :: menu"></div>
+    
+    <div class="container-fluid">
+        <form class="row g-3" method="post" th:action="@{/vehiculos/update}">
+          <div class="col-md-4">
+            <label for="matricula" class="form-label">Matrícula</label>
+            <input type="text" class="form-control" id="matricula" name="matricula" th:value="${vehiculo.matricula}">
+          </div>
+          <div class="col-md-4">
+              <label for="marca" class="form-label">Marca</label>
+              <input type="text" class="form-control" id="marca" name="marca" th:value="${vehiculo.marca}">
+          </div>
+          <div class="col-md-8">
+            <label for="modelo" class="form-label">Modelo</label>
+            <input type="text" class="form-control" id="modelo" name="modelo" th:value="${vehiculo.modelo}">
+          </div>
+          <div class="col-md-8">
+            <label for="fechaMatricuacion" class="form-label">Fecha de matriculación</label>
+            <input type="text" class="form-control" id="fechaMatricuacion" name="fechaMatricuacion" th:value="${vehiculo.fechaMatricuacion}">
+          </div>
+          <div class="col-md-8">
+              <label for="numBastidor" class="form-label">Núm. de bastidor</label>
+              <input type="text" class="form-control" id="numBastidor" name="numBastidor" th:value="${vehiculo.numBastidor}">
+          </div>
+          <div class="col-md-8">
+            <label for="color" class="form-label">Color</label>
+            <input type="text" class="form-control" id="color" name="color" th:value="${vehiculo.color}">
+          </div>
+          <div class="mb-3">
+            <label for="tipo" class="form-label">Tipo</label>
+            <input type="text" class="form-control" id="tipo" name="tipo" th:value="${vehiculo.tipo}">
+          </div>
+          <div class="mb-3">
+            <label for="kilometros" class="form-label">Kilómetros</label>
+            <input type="kilometros" class="form-control" id="kilometros" name="kilometros" th:value="${vehiculo.kilometros}">
+          </div>
+            <div class="col-1">
+                <a th:href="@{/vehiculos/list}" href="list.html" class="btn btn-primary">Cancelar</a>
+            </div>
+            <div class="col-1">
+                <input type="submit" class="btn btn-primary" value="Actualizar"></input>
+            </div>
+        </form>
+    </div>
+
+    <div th:replace="commons/footer :: footer" class="container"></div>
+</body>
+</html>
