@@ -5,41 +5,113 @@
     <div th:replace="commons/menu :: menu"></div>
     
     <div class="container-fluid">
-        <form class="row g-3" method="post" th:action="@{/vehiculos/save}">
+        <form class="row g-3" method="post" th:action="@{/reparaciones/save}">
             <div class="col-md-4">
-                <label for="matricula" class="form-label">Matrícula</label>
-                <input type="text" class="form-control" id="matricula" name="matricula">
+                <label for="fechaEntrada" class="form-label">Fecha entrada</label>
+                <input type="text" class="form-control" id="fechaEntrada" name="fechaEntrada">
             </div>
             <div class="col-md-4">
-                <label for="marca" class="form-label">Marca</label>
-                <input type="text" class="form-control" id="marca" name="marca">
+                <label for="fechaSalida" class="form-label">Fecha salida</label>
+                <input type="text" class="form-control" id="fechaSalida" name="fechaSalida">
             </div>
             <div class="col-md-8">
-              <label for="modelo" class="form-label">Modelo</label>
-              <input type="text" class="form-control" id="modelo" name="modelo">
+              <label for="mecanicaGeneralSalida" class="form-label">Kilómetros salida</label>
+              <input type="text" class="form-control" id="mecanicaGeneralSalida" name="mecanicaGeneralSalida">
             </div>
             <div class="col-md-8">
-              <label for="fechaMatricuacion" class="form-label">Fecha de matriculación</label>
-              <input type="text" class="form-control" id="fechaMatricuacion" name="fechaMatricuacion">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <input type="text" class="form-control" id="descripcion" name="descripcion">
             </div>
             <div class="col-md-8">
-                <label for="numBastidor" class="form-label">Núm. de bastidor</label>
-                <input type="text" class="form-control" id="numBastidor" name="numBastidor">
+                <label for="estado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="estado" name="estado">
             </div>
             <div class="col-md-8">
-              <label for="color" class="form-label">Color</label>
-              <input type="text" class="form-control" id="color" name="color">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <input type="text" class="form-control" id="observaciones" name="observaciones">
             </div>
             <div class="mb-3">
-              <label for="tipo" class="form-label">Tipo</label>
-              <input type="text" class="form-control" id="tipo" name="tipo">
+              <label for="precio" class="form-label">Precio</label>
+              <input type="text" class="form-control" id="precio" name="precio">
             </div>
             <div class="mb-3">
-              <label for="kilometros" class="form-label">Kilómetros</label>
-              <input type="kilometros" class="form-control" id="kilometros" name="kilometros">
+              <label for="mecanicaGeneral" class="form-label">Mecánica general</label>
+              <input type="text" class="form-control" id="mecanicaGeneral" name="mecanicaGeneral">
+            </div>
+            <div class="mb-3">
+              <label for="diagnostico" class="form-label">Diagnóstico</label>
+              <input type="text" class="form-control" id="diagnostico" name="diagnostico">
+            </div>
+            <div class="mb-3">
+              <label for="inyeccion" class="form-label">Inyección</label>
+              <input type="text" class="form-control" id="inyeccion" name="inyeccion">
+            </div>
+            <div class="mb-3">
+              <label for="preItv" class="form-label">Pre ITV</label>
+              <input type="text" class="form-control" id="preItv" name="preItv">
+            </div>
+            <div class="mb-3">
+              <label for="frenos" class="form-label">Frenos</label>
+              <input type="text" class="form-control" id="frenos" name="frenos">
+            </div>
+            <div class="mb-3">
+              <label for="suspension" class="form-label">Suspensión</label>
+              <input type="text" class="form-control" id="suspension" name="suspension">
+            </div>
+            <div class="mb-3">
+              <label for="aceite" class="form-label">Aceite</label>
+              <input type="text" class="form-control" id="aceite" name="aceite">
+            </div>
+            <div class="mb-3">
+              <label for="filtros" class="form-label">Filtros</label>
+              <input type="text" class="form-control" id="filtros" name="filtros">
+            </div>
+            <div class="mb-3">
+              <label for="neumaticos" class="form-label">Neumáticos</label>
+              <input type="text" class="form-control" id="neumaticos" name="neumaticos">
+            </div>
+            <div class="mb-3">
+              <label for="revisionOficial" class="form-label">Revisión oficial</label>
+              <input type="text" class="form-control" id="revisionOficial" name="revisionOficial">
+            </div>
+            <div class="mb-3">
+              <label for="matriculas" class="form-label">Matrículas</label>
+              <input type="text" class="form-control" id="matriculas" name="matriculas">
+            </div>
+            <div class="mb-3">
+              <label for="bateria" class="form-label">Batería</label>
+              <input type="text" class="form-control" id="bateria" name="bateria">
+            </div>
+            <div class="mb-3">
+              <label for="correas" class="form-label">Correas</label>
+              <input type="text" class="form-control" id="correas" name="correas">
+            </div>
+            <div class="mb-3">
+              <label for="chapaPintura" class="form-label">Chapa/Pintura</label>
+              <input type="text" class="form-control" id="chapaPintura" name="chapaPintura">
+            </div>
+            <div class="mb-3">
+              <label for="equilibradoAlineacion" class="form-label">Equilibrado/Alineación</label>
+              <input type="text" class="form-control" id="equilibradoAlineacion" name="equilibradoAlineacion">
+            </div>
+            <div class="mb-3">
+              <label for="sistemaEscape" class="form-label">Sistema escape</label>
+              <input type="text" class="form-control" id="sistemaEscape" name="sistemaEscape">
+            </div>
+            <div class="mb-3">
+              <label for="climaticacion" class="form-label">Climaticación</label>
+              <input type="text" class="form-control" id="climaticacion" name="climaticacion">
+            </div>
+            <div class="mb-3">
+              <label for="electricidadElectronica" class="form-label">Electricidad/Electrónica</label>
+              <input type="text" class="form-control" id="electricidadElectronica" name="electricidadElectronica">
+            </div>
+            <div class="mb-3">
+              <label for="ventaRecambios" class="form-label">Venta recambios</label>
+              <input type="text" class="form-control" id="ventaRecambios" name="ventaRecambios">
             </div>
             <div class="col-1">
-                <a th:href="@{/vehiculos/list}" href="list.html" class="btn btn-primary">Cancelar</a>
+                <a th:href="@{/reparaciones/list}" href="list.html" class="btn btn-primary">Cancelar</a>
             </div>
             <div class="col-1">
                 <input type="submit" class="btn btn-primary" value="Crear"></input>
