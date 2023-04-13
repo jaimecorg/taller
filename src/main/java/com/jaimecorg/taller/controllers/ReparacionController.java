@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jaimecorg.taller.model.Reparacion;
+import com.jaimecorg.taller.model.Vehiculo;
 import com.jaimecorg.taller.services.ReparacionService;
+import com.jaimecorg.taller.services.VehiculoService;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -74,13 +77,17 @@ public class ReparacionController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("reparacion", new Reparacion());
-        modelAndView.setViewName("reparacions/create");
+        modelAndView.setViewName("reparaciones/create");
 
         return modelAndView;
     }
 
-    @PostMapping(path = "/save")
-    public ModelAndView save(Reparacion reparacion) throws IOException{
+    @PostMapping(path = "/save/{codigo}")
+    public ModelAndView save(Reparacion reparacion, int codigo) throws IOException{
+        //request del codigo del vehiculo, crear un objeto vacío
+        Vehiculo vehiculo = VehiculoService.findByID(codigo);
+
+        //Vehiculo vehiculo = (Vehiculo) reparacion.getVehiculo();
 
         reparacionService.insert(reparacion);
 
@@ -98,7 +105,7 @@ public class ReparacionController {
                 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("reparacion", reparacion);
-        modelAndView.setViewName("reparacions/edit");
+        modelAndView.setViewName("reparaciones/edit");
         return modelAndView;
     }
 

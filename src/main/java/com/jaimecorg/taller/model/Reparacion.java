@@ -16,11 +16,11 @@ public class Reparacion {
     @GeneratedValue
     private int codigo;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @MapsId("vehiculo_codigo")
     private Vehiculo vehiculo;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @MapsId("mecanico_codigo")
     private Mecanico mecanico;
 
