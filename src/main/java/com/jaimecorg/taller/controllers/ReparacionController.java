@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,9 @@ import org.springframework.data.domain.Sort;
 public class ReparacionController {
     @Autowired
     ReparacionService reparacionService;
+
+    @Autowired
+    VehiculoService vehiculoService;
 
     @Value("${pagination.size}")
     int sizePage;
@@ -83,12 +87,13 @@ public class ReparacionController {
     }
 
     @PostMapping(path = "/save/{codigo}")
-    public ModelAndView save(Reparacion reparacion, int codigo) throws IOException{
+    public ModelAndView save(@PathVariable int codigo, @ModelAttribute("reparacion") Reparacion reparacion) throws IOException {
         //request del codigo del vehiculo, crear un objeto vacío
-        Vehiculo vehiculo = VehiculoService.findByID(codigo);
+        Vehiculo vehiculo = vehiculoService.findByID(codigo);
 
         //Vehiculo vehiculo = (Vehiculo) reparacion.getVehiculo();
 
+        reparacion.setVehiculo(vehiculo);
         reparacionService.insert(reparacion);
 
         ModelAndView modelAndView = new ModelAndView();
