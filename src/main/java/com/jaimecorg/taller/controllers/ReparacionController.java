@@ -13,14 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jaimecorg.taller.model.Reparacion;
-import com.jaimecorg.taller.model.Vehiculo;
+//import com.jaimecorg.taller.model.Vehiculo;
 import com.jaimecorg.taller.services.ReparacionService;
 import com.jaimecorg.taller.services.VehiculoService;
 
@@ -85,8 +85,8 @@ public class ReparacionController {
 
         return modelAndView;
     }
-
-    @PostMapping(path = "/save/{codigo}")
+/*
+ * @PostMapping(path = "/save/{codigo}")
     public ModelAndView save(@PathVariable int codigo, @ModelAttribute("reparacion") Reparacion reparacion) throws IOException {
         //request del codigo del vehiculo, crear un objeto vacío
         Vehiculo vehiculo = vehiculoService.findByID(codigo);
@@ -101,6 +101,17 @@ public class ReparacionController {
 
         return modelAndView;
     }
+ */
+@PostMapping(path = "/save")
+public ModelAndView save(Reparacion reparacion) throws IOException{
+
+    reparacionService.insert(reparacion);
+
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.setViewName("redirect:edit/" + reparacion.getCodigo());
+
+    return modelAndView;
+}
 
     @GetMapping(path = { "/edit/{codigo}" })
     public ModelAndView edit(

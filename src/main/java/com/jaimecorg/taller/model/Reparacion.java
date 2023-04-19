@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 
 @Entity
 public class Reparacion {
@@ -17,11 +16,9 @@ public class Reparacion {
     private int codigo;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @MapsId("vehiculo_codigo")
     private Vehiculo vehiculo;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @MapsId("mecanico_codigo")
     private Mecanico mecanico;
 
     private Date fechaEntrada;

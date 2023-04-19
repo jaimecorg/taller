@@ -7,8 +7,8 @@
     <div class="container-fluid">
         <form class="row g-3" method="post" th:action="@{/reparaciones/update}">
           <div class="col-md-4">
-            <label for="vehiculo_codigo" class="form-label">Vehículo</label>
-            <input type="text" class="form-control" id="vehiculo_codigo" name="vehiculo_codigo" th:value="${reparacion.vehiculo.codigo}">
+            <label for="vehiculo" class="form-label">Vehículo</label>
+            <input type="text" class="form-control" id="vehiculo" name="vehiculo" th:value="${reparacion.vehiculo.codigo}">
           </div>
           <div class="col-md-4">
             <label for="mecanico" class="form-label">Mecánico</label>
@@ -119,7 +119,7 @@
             <input type="text" class="form-control" id="ventaRecambios" name="ventaRecambios" th:value="${reparacion.ventaRecambios}">
           </div>
           <div class="col-1">
-              <a th:href="@{/vehiculos/list}" href="list.html" class="btn btn-primary">Cancelar</a>
+              <a th:href="@{/reparaciones/list}" href="list.html" class="btn btn-primary">Cancelar</a>
           </div>
           <div class="col-1">
               <input type="submit" class="btn btn-primary" value="Actualizar"></input>

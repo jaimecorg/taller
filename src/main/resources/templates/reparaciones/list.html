@@ -12,6 +12,8 @@
     <thead>
       <tr>
         <th scope="col">Código</th>
+        <th scope="col">Mecánico</th>
+        <th scope="col">Vehículo</th>
         <th scope="col">Fecha entrada</th>
         <th scope="col">Fecha salida</th>
         <th scope="col">Kilómetros salida</th>
@@ -46,6 +48,8 @@
         <div th:each="reparacion : ${reparaciones}" class="col-3">
             <tr>
                 <th scope="row" th:text="${reparacion.codigo}">1</th>
+                <td th:text="${reparacion.vehiculo.matricula}">2857JKQ</td>
+                <td th:text="${reparacion.mecanico.dni}">2857JKQ</td>
                 <td th:text="${reparacion.fechaEntrada}">2857JKQ</td>
                 <td th:text="${reparacion.fechaSalida}">Audi</td>
                 <td th:text="${reparacion.kilometrosSalida}">A3</td>
