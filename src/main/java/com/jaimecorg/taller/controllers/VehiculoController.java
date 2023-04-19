@@ -95,7 +95,7 @@ public class VehiculoController {
     public ModelAndView edit(
             @PathVariable(name = "codigo", required = true) int codigo) {
 
-                Vehiculo vehiculo = vehiculoService.findByID(codigo);
+        Vehiculo vehiculo = vehiculoService.findByID(codigo);
                 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("vehiculo", vehiculo);
@@ -131,4 +131,37 @@ public class VehiculoController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
+
+    @GetMapping(path = { "/listar/{codigo}" })
+    public ModelAndView listByCode(
+            @PathVariable(name = "codigo", required = true) int codigo) {
+
+        Vehiculo vehiculo = vehiculoService.findByID(codigo);
+                
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("vehiculo", vehiculo);
+        modelAndView.setViewName("vehiculos/list");
+        return modelAndView;
+    }
+
+    /*
+    @GetMapping("/vehiculos/listar/{codigo}")
+    public String mostrarVehiculo(@PathVariable("codigo") int codigo, Model model) {
+    // Buscar el vehículo con el código especificado en la lista de vehículos del propietario
+    Vehiculo vehiculoSeleccionado = null;
+    
+    for (Vehiculo vehiculo : propietario.getVehiculo()) {
+        if (vehiculo.getCodigo() == codigo) {
+            vehiculoSeleccionado = vehiculo;
+            break;
+        }
+    }
+    // Agregar el vehículo seleccionado al modelo para mostrarlo en la vista
+    model.addAttribute("vehiculo", vehiculoSeleccionado);
+    return "mostrar_vehiculo";
+    } 
+
+     */
+
+
 }
