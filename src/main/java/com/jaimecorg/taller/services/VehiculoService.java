@@ -12,4 +12,6 @@ public interface VehiculoService {
     public void insert(Vehiculo vehiculo);
     public void update(Vehiculo vehiculo);
     public void delete(int codigo);
+    public Vehiculo findByMatricula(String matricula);
+
 }

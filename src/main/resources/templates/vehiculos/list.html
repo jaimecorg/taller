@@ -8,6 +8,18 @@
     Lista de vehículos
   </p>
 
+  <form class="row g-3" th:action="@{/vehiculos/search}" method="get">
+    <div class="col-auto">
+      <label for="matricula">Matrícula</label>
+    </div>
+    <div class="col-auto">
+      <input type="text" class="form-control" id="matricula" placeholder="XXXXABC" name="matricula">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Mostrar vehículo</button>
+    </div>
+  </form>
+
   <table class="table">
     <thead>
       <tr>

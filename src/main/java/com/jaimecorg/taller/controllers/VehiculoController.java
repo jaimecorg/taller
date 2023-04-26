@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jaimecorg.taller.model.Vehiculo;
@@ -46,7 +47,8 @@ public class VehiculoController {
     public ModelAndView listPage(Model model,
             @PathVariable("numPage") Integer numPage,
             @PathVariable("fieldSort") String fieldSort,
-            @PathVariable("directionSort") String directionSort) {
+            @PathVariable("directionSort") String directionSort,
+            @RequestParam String matricula) {
 
 
         Pageable pageable = PageRequest.of(numPage - 1, sizePage,
@@ -137,6 +139,18 @@ public class VehiculoController {
             @PathVariable(name = "codigo", required = true) int codigo) {
 
         Vehiculo vehiculo = vehiculoService.findByID(codigo);
+                
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("vehiculo", vehiculo);
+        modelAndView.setViewName("vehiculos/listOne");
+        return modelAndView;
+    }
+
+    @GetMapping(path = { "/search" })
+    public ModelAndView listByCode(
+            @RequestParam String matricula) {
+
+        Vehiculo vehiculo = vehiculoService.findByMatricula(matricula);
                 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("vehiculo", vehiculo);

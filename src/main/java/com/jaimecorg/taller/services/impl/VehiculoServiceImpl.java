@@ -46,4 +46,13 @@ public class VehiculoServiceImpl implements VehiculoService{
     public void delete(int codigo) {
         repository.deleteById(codigo);   
     }
+
+    @Override
+    public Vehiculo findByMatricula(String matricula) {
+        Vehiculo findByMatricula = repository.findByMatricula(matricula);
+        if(findByMatricula != null){
+            return findByMatricula;
+        }
+        return null;
+    }
 }
