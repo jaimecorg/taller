@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jaimecorg.taller.model.Propietario;
+
 import com.jaimecorg.taller.services.PropietarioService;
 
 import org.springframework.data.domain.Page;
@@ -31,6 +32,8 @@ import org.springframework.data.domain.Sort;
 public class PropietarioController {
     @Autowired
     PropietarioService propietarioService;
+
+
 
     @Value("${pagination.size}")
     int sizePage;
@@ -131,4 +134,5 @@ public class PropietarioController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
+
 }

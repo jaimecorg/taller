@@ -40,7 +40,7 @@
             <div class="dropdown-menu">
               <!-- bucle para crear las opciones del dropdown list -->
               <a th:each="vehiculo : ${propietario.vehiculo}" th:href="@{/vehiculos/listar/}+${vehiculo.codigo}" class="dropdown-item" th:text="${vehiculo.marca + ' ' + vehiculo.modelo}"></a>
-          </div>
+            </div>
           </div>                
         </td>
         <td>

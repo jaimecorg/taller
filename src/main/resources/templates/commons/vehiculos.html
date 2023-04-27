@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-  <div th:fragment="vehiculo">
+  <div th:fragment="vehiculos">
+    <p>
+      Lista de vehículos
+    </p>
+  
     <table class="table">
       <thead>
         <tr>
@@ -18,7 +22,7 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-          <div th:each="vehiculo : ${vehiculos}" class="col-3">
+          <div th:each="vehiculo : ${propietario.vehiculo}" th:href="@{/vehiculos/listar/}+${vehiculo.codigo}" class="col-3">
               <tr>
                   <th scope="row" th:text="${vehiculo.codigo}">1</th>
                   <td th:text="${vehiculo.matricula}">2857JKQ</td>
@@ -45,7 +49,15 @@
           </div>
       </tbody>
     </table>
-  </div> 
   
+    <a th:href="@{/vehiculos/create/${propietario.codigo}}" href="create.html" class="btn btn-outline-primary"> Crear vehículo</a>
+   
+  </div>
+    
+  <!--En la edición de propietario meter un listado de sus vehículos y botóncreación
+    Dentro de la edición de vehículo meter un listado de reparaciones y unas altas de estas.
+    Cuidado con el botón volver que te tiene que llevar a la página anterior y no a otra al azar
+    Crear coche con el codigo del propietario directamente
+  -->
 </body>
 </html>

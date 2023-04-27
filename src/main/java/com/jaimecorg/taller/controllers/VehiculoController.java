@@ -47,8 +47,9 @@ public class VehiculoController {
     public ModelAndView listPage(Model model,
             @PathVariable("numPage") Integer numPage,
             @PathVariable("fieldSort") String fieldSort,
-            @PathVariable("directionSort") String directionSort,
-            @RequestParam String matricula) {
+            @PathVariable("directionSort") String directionSort
+            // , @RequestParam String matricula
+            ) {
 
 
         Pageable pageable = PageRequest.of(numPage - 1, sizePage,
@@ -74,6 +75,16 @@ public class VehiculoController {
 
     @GetMapping(value = "/create")
     public ModelAndView create(Vehiculo vehiculo) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("vehiculo", new Vehiculo());
+        modelAndView.setViewName("vehiculos/create");
+
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/create/{codigo}")
+    public ModelAndView createConPropietario(Vehiculo vehiculo) {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("vehiculo", new Vehiculo());
@@ -111,7 +122,7 @@ public class VehiculoController {
         vehiculoService.update(vehiculo);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:edit/" + vehiculo.getCodigo());
+        modelAndView.setViewName("redirect:../propietarios/edit/" + vehiculo.getPropietario().getCodigo());
         
         return modelAndView;
     }
