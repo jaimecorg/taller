@@ -42,8 +42,13 @@
             </div>
         </form>        
     </div>
+
     <div th:replace="commons/vehiculos :: vehiculos" class="container"></div>
 
+    <div th:with="propietarioCodigo=${propietario.codigo}">
+      <a th:href="@{/vehiculos/create/} + ${propietarioCodigo}" href="create.html" class="btn btn-outline-primary"> Crear vehículo</a>
+   </div>
+   
     <div th:replace="commons/footer :: footer" class="container"></div>
 </body>
 </html>

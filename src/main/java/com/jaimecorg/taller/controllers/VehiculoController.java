@@ -9,17 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jaimecorg.taller.model.Propietario;
 import com.jaimecorg.taller.model.Vehiculo;
+import com.jaimecorg.taller.services.PropietarioService;
 import com.jaimecorg.taller.services.VehiculoService;
 
 import org.springframework.data.domain.Page;
@@ -32,6 +36,9 @@ import org.springframework.data.domain.Sort;
 public class VehiculoController {
     @Autowired
     VehiculoService vehiculoService;
+
+    @Autowired
+    PropietarioService propietarioService;
 
     @Value("${pagination.size}")
     int sizePage;
@@ -73,7 +80,8 @@ public class VehiculoController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/create")
+    /*
+     @GetMapping(value = "/create")
     public ModelAndView create(Vehiculo vehiculo) {
 
         ModelAndView modelAndView = new ModelAndView();
@@ -82,17 +90,46 @@ public class VehiculoController {
 
         return modelAndView;
     }
+     */
+    
 
     @GetMapping(value = "/create/{codigo}")
-    public ModelAndView createConPropietario(Vehiculo vehiculo) {
+    //@Transactional
+    public ModelAndView createConPropietario(
+        @PathVariable(name = "codigo", required = true) int codigo) {
+
+        Propietario propietario = propietarioService.findByID(codigo);
+
+        Vehiculo vehiculo = new Vehiculo();
+        vehiculo.setPropietario(propietario);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("vehiculo", new Vehiculo());
+        modelAndView.addObject("vehiculo", vehiculo);
+
         modelAndView.setViewName("vehiculos/create");
 
         return modelAndView;
     }
 
+    
+    @PostMapping(path = "/save")
+    public ModelAndView save(Vehiculo vehiculo, 
+                            @RequestParam("propietarioCodigo") int propietarioCodigo) throws IOException {
+
+
+        Propietario propietario = propietarioService.findByID(propietarioCodigo);
+        vehiculo.setPropietario(propietario);
+
+        vehiculoService.insert(vehiculo);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:edit/" + vehiculo.getCodigo());
+
+        return modelAndView;
+    }
+    
+/*
+ 
     @PostMapping(path = "/save")
     public ModelAndView save(Vehiculo vehiculo) throws IOException{
 
@@ -103,6 +140,10 @@ public class VehiculoController {
 
         return modelAndView;
     }
+
+ */
+    
+
 
     @GetMapping(path = { "/edit/{codigo}" })
     public ModelAndView edit(

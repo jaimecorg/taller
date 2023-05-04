@@ -39,10 +39,11 @@
               <input type="text" class="form-control" id="kilometros" name="kilometros">
             </div>
             <div class="mb-3">
-              <label for="propietario" class="form-label" th:text="${vehiculo.propietario}">Propietario</label>
+              <!--<label for="propietarioLbl" class="form-label">Propietario: </label> -->
+              <input type="hidden" id="propietarioCodigo" name="propietarioCodigo" th:value="${vehiculo.propietario.codigo}">
             </div>
             <div class="col-1">
-                <a th:href="@{/vehiculos/list}" href="list.html" class="btn btn-primary">Cancelar</a>
+                <a th:href="@{/propietarios/edit/} + ${vehiculo.propietario.codigo}" href="edit.html" class="btn btn-primary">Cancelar</a>
             </div>
             <div class="col-1">
                 <input type="submit" class="btn btn-primary" value="Crear"></input>
