@@ -6,8 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Mecanico {
@@ -21,22 +20,8 @@ public class Mecanico {
     private Date fechaNacimiento;
     private int telefono;
     private String direccion;
-    
-    /*
-     @ManyToMany(cascade = {
-        CascadeType.PERSIST,
-        CascadeType.MERGE
-    })
-    @JoinTable(
-            name = "reparacion",
-            joinColumns = {@JoinColumn(name = "mecanico_codigo")},
-            inverseJoinColumns = {@JoinColumn(name = "vehiculo_codigo")}
-    )
-    private Set<Vehiculo> vehiculos;
-     */
-    
 
-    @Transient
+    @OneToMany(mappedBy="mecanico")
     private List<Reparacion> reparaciones;
 
     public Mecanico() {

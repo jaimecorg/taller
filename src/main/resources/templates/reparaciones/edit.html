@@ -119,8 +119,8 @@
             <input type="text" class="form-control" id="ventaRecambios" name="ventaRecambios" th:value="${reparacion.ventaRecambios}">
           </div>
           <div class="col-1">
-              <a th:href="@{/reparaciones/list}" href="list.html" class="btn btn-primary">Cancelar</a>
-          </div>
+            <a th:href="@{/vehiculos/edit/} + ${reparacion.vehiculo.codigo}" href="edit.html" class="btn btn-primary">Cancelar</a>
+        </div>
           <div class="col-1">
               <input type="submit" class="btn btn-primary" value="Actualizar"></input>
           </div>

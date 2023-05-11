@@ -51,6 +51,12 @@
         </form>
     </div>
 
+    <div th:replace="commons/reparaciones :: reparaciones" class="container"></div>
+
+    <div th:with="vehiculoCodigo=${vehiculo.codigo}">
+      <a th:href="@{/reparaciones/create/} + ${vehiculoCodigo}" href="create.html" class="btn btn-outline-primary"> Crear reparación</a>
+   </div>
+
     <div th:replace="commons/footer :: footer" class="container"></div>
 </body>
 </html>

@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jaimecorg.taller.model.Mecanico;
 import com.jaimecorg.taller.model.Reparacion;
+import com.jaimecorg.taller.model.Vehiculo;
+import com.jaimecorg.taller.services.MecanicoService;
 //import com.jaimecorg.taller.model.Vehiculo;
 import com.jaimecorg.taller.services.ReparacionService;
 import com.jaimecorg.taller.services.VehiculoService;
@@ -37,6 +41,9 @@ public class ReparacionController {
 
     @Autowired
     VehiculoService vehiculoService;
+
+    @Autowired
+    MecanicoService mecanicoService;
 
     @Value("${pagination.size}")
     int sizePage;
@@ -81,19 +88,33 @@ public class ReparacionController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("reparacion", new Reparacion());
+        modelAndView.addObject("mecanicos", mecanicoService.findAll(null));
         modelAndView.setViewName("reparaciones/create");
 
         return modelAndView;
     }
-/*
- * @PostMapping(path = "/save/{codigo}")
-    public ModelAndView save(@PathVariable int codigo, @ModelAttribute("reparacion") Reparacion reparacion) throws IOException {
-        //request del codigo del vehiculo, crear un objeto vacío
+
+    @GetMapping(value = "/create/{codigo}")
+    public ModelAndView createConVehiculo(
+        @PathVariable(name = "codigo", required = true) int codigo) {
+
         Vehiculo vehiculo = vehiculoService.findByID(codigo);
 
-        //Vehiculo vehiculo = (Vehiculo) reparacion.getVehiculo();
-
+        Reparacion reparacion = new Reparacion();
         reparacion.setVehiculo(vehiculo);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("reparacion", reparacion);
+
+        modelAndView.setViewName("reparaciones/create");
+
+        return modelAndView;
+    }
+
+    /*
+     @PostMapping(path = "/save")
+    public ModelAndView save(Reparacion reparacion) throws IOException{
+
         reparacionService.insert(reparacion);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -101,23 +122,29 @@ public class ReparacionController {
 
         return modelAndView;
     }
- */
-@PostMapping(path = "/save")
-public ModelAndView save(Reparacion reparacion) throws IOException{
+     */
+    
 
-    reparacionService.insert(reparacion);
+    @PostMapping(path = "/save")
+    public ModelAndView save(Reparacion reparacion, 
+                            @RequestParam("vehiculoCodigo") int vehiculoCodigo) throws IOException {
 
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("redirect:edit/" + reparacion.getCodigo());
+        Vehiculo vehiculo = vehiculoService.findByID(vehiculoCodigo);
+        reparacion.setVehiculo(vehiculo);
 
-    return modelAndView;
-}
+        reparacionService.insert(reparacion);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:edit/" + reparacion.getCodigo());
+
+        return modelAndView;
+    }  
 
     @GetMapping(path = { "/edit/{codigo}" })
     public ModelAndView edit(
             @PathVariable(name = "codigo", required = true) int codigo) {
 
-                Reparacion reparacion = reparacionService.findByID(codigo);
+        Reparacion reparacion = reparacionService.findByID(codigo);
                 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("reparacion", reparacion);
@@ -127,6 +154,11 @@ public ModelAndView save(Reparacion reparacion) throws IOException{
 
     @PostMapping(path = { "/update" })
     public ModelAndView update(Reparacion reparacion) {
+
+        int vehiculoIdExistente = reparacionService.findByID(reparacion.getCodigo()).getVehiculo().getCodigo();
+        
+        Vehiculo vehiculoExistente = vehiculoService.findByID(vehiculoIdExistente);
+        reparacion.setVehiculo(vehiculoExistente);
 
         reparacionService.update(reparacion);
 
@@ -140,10 +172,13 @@ public ModelAndView save(Reparacion reparacion) throws IOException{
     public ModelAndView delete(
             @PathVariable(name = "codigo", required = true) int codigo) {
 
-                reparacionService.delete(codigo);
+        Reparacion reparacion = reparacionService.findByID(codigo);
+        Vehiculo vehiculo = reparacion.getVehiculo();
+
+        reparacionService.delete(codigo);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/reparaciones/list");
+        modelAndView.setViewName("redirect:/vehiculos/edit/" + vehiculo.getCodigo());
 
         return modelAndView;
     }

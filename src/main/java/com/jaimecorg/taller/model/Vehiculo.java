@@ -1,10 +1,11 @@
 package com.jaimecorg.taller.model;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,7 +15,7 @@ import javax.persistence.OneToMany;
 public class Vehiculo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private int codigo;
     private String matricula;
     private String numBastidor;
@@ -28,15 +29,11 @@ public class Vehiculo {
     @ManyToOne
     @JoinColumn(name="propietario", nullable = false)
     private Propietario propietario;
-    
-    /*
-     @ManyToMany(mappedBy = "vehiculos")
-    private Set<Mecanico> mecanicos;
-     */
-    
+        
     
     @OneToMany(mappedBy = "vehiculo")
-    private Set<Reparacion> reparaciones;
+    private List<Reparacion> reparaciones;
+    //private Set<Reparacion> reparaciones;
     
 
     public Vehiculo() {
@@ -49,7 +46,7 @@ public class Vehiculo {
 
     public Vehiculo(int codigo, String matricula, String numBastidor, Date fechaMatricuacion, String marca,
             String modelo, String color, String tipo, int kilometros, Propietario propietario,
-            Set<Reparacion> reparaciones) {
+            List<Reparacion> reparaciones) {
         this.codigo = codigo;
         this.matricula = matricula;
         this.numBastidor = numBastidor;
@@ -135,11 +132,11 @@ public class Vehiculo {
         this.kilometros = kilometros;
     }
 
-    public Set<Reparacion> getReparaciones() {
+    public List<Reparacion> getReparaciones() {
         return reparaciones;
     }
 
-    public void setReparaciones(Set<Reparacion> reparaciones) {
+    public void setReparaciones(List<Reparacion> reparaciones) {
         this.reparaciones = reparaciones;
     }
 

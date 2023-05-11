@@ -2,23 +2,27 @@ package com.jaimecorg.taller.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Reparacion {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Poner así en todas
     private int codigo;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(cascade=CascadeType.MERGE)
+    @JoinColumn(name ="vehiculo")
     private Vehiculo vehiculo;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(cascade=CascadeType.MERGE)
+    @JoinColumn(name = "mecanico")
     private Mecanico mecanico;
 
     private Date fechaEntrada;

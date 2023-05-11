@@ -33,8 +33,6 @@ public class PropietarioController {
     @Autowired
     PropietarioService propietarioService;
 
-
-
     @Value("${pagination.size}")
     int sizePage;
 
