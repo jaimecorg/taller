@@ -113,21 +113,7 @@ public class ReparacionController {
         modelAndView.setViewName("reparaciones/create");
 
         return modelAndView;
-    }
-
-    /*
-     @PostMapping(path = "/save")
-    public ModelAndView save(Reparacion reparacion) throws IOException{
-
-        reparacionService.insert(reparacion);
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:edit/" + reparacion.getCodigo());
-
-        return modelAndView;
-    }
-     */
-    
+    } 
 
     @PostMapping(path = "/save")
     public ModelAndView save(Reparacion reparacion, 

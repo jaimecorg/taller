@@ -11,7 +11,6 @@ public interface MecanicoService {
     
     public Page<Mecanico> findAll(Pageable page);
     public List<Mecanico> findAll();
-
     public Mecanico findByID(int codigo);
     public void insert(Mecanico mecanico);
     public void update(Mecanico mecanico);

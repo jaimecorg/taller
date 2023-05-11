@@ -106,17 +106,24 @@
             <label for="sistemaEscape" class="form-label">Sistema escape</label>
             <input type="text" class="form-control" id="sistemaEscape" name="sistemaEscape" th:value="${reparacion.sistemaEscape}">
           </div>
-          <div class="mb-3">
-            <label for="climaticacion" class="form-label">Climaticación</label>
-            <input type="text" class="form-control" id="climaticacion" name="climaticacion" th:value="${reparacion.climaticacion}">
+
+          <div class="col-md-4">
+            <div class="form-check">
+                <label class="form-check-label" for="climaticacion">Climaticación</label>
+                <input class="form-check-input" type="checkbox" id="climaticacion" name="climaticacion" th:checked="${reparacion.climaticacion}" >
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="electricidadElectronica" class="form-label">Electricidad/Electrónica</label>
-            <input type="text" class="form-control" id="electricidadElectronica" name="electricidadElectronica" th:value="${reparacion.electricidadElectronica}">
+          <div class="col-md-4">
+            <div class="form-check">
+                <label class="form-check-label" for="electricidadElectronica">Electricidad/Electrónica</label>
+                <input class="form-check-input" type="checkbox" id="electricidadElectronica" name="electricidadElectronica" th:checked="${reparacion.electricidadElectronica}" >
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="ventaRecambios" class="form-label">Venta recambios</label>
-            <input type="text" class="form-control" id="ventaRecambios" name="ventaRecambios" th:value="${reparacion.ventaRecambios}">
+          <div class="col-md-4">
+            <div class="form-check">
+                <label class="form-check-label" for="ventaRecambios">Venta recambios</label>
+                <input class="form-check-input" type="checkbox" id="ventaRecambios" name="ventaRecambios" th:checked="${reparacion.ventaRecambios}" >
+            </div>
           </div>
           <div class="col-1">
             <a th:href="@{/vehiculos/edit/} + ${reparacion.vehiculo.codigo}" href="edit.html" class="btn btn-primary">Cancelar</a>
