@@ -1,5 +1,6 @@
 package com.jaimecorg.taller.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,11 @@ public class MecanicoServiceImpl implements MecanicoService{
     @Override
     public void delete(int codigo) {
         repository.deleteById(codigo);   
+    }
+
+    @Override
+    public List<Mecanico> findAll() {
+
+        return repository.findAll();
     }
 }
