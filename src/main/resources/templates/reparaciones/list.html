@@ -3,11 +3,9 @@
 <head th:replace="commons/header :: header"> </head>
 <body>
   <div th:replace="commons/menu :: menu"></div>
-
   <p>
     Lista de reparaciones
   </p>
-
   <table class="table">
     <thead>
       <tr>
@@ -47,8 +45,8 @@
         <div th:each="reparacion : ${reparaciones}" class="col-3">
             <tr>
                 <th scope="row" th:text="${reparacion.codigo}">1</th>
-                <td th:text="${reparacion.vehiculo.matricula}">2857JKQ</td>
                 <td th:text="${reparacion.mecanico.dni}">2857JKQ</td>
+                <td th:text="${reparacion.vehiculo.matricula}">2857JKQ</td>
                 <td th:text="${reparacion.fechaEntrada}">2857JKQ</td>
                 <td th:text="${reparacion.fechaSalida}">Audi</td>
                 <td th:text="${reparacion.kilometrosSalida}">A3</td>

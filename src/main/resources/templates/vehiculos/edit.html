@@ -11,6 +11,10 @@
             <input type="text" class="form-control" id="matricula" name="matricula" th:value="${vehiculo.matricula}">
           </div>
           <div class="col-md-4">
+            <label for="codigo" class="form-label">Código</label>
+            <input type="text" class="form-control" id="codigo" name="codigo" th:value="${vehiculo.codigo}" readonly>
+          </div>
+          <div class="col-md-4">
               <label for="marca" class="form-label">Marca</label>
               <input type="text" class="form-control" id="marca" name="marca" th:value="${vehiculo.marca}">
           </div>
@@ -39,8 +43,8 @@
             <input type="kilometros" class="form-control" id="kilometros" name="kilometros" th:value="${vehiculo.kilometros}">
           </div>
           <div class="mb-3">
-            <label for="propietario" class="form-label">Propietario</label>
-            <input type="propietario" class="form-control" id="propietario" name="propietario" th:value="${vehiculo.propietario.codigo}" disabled="true">
+            <label for="codigoPropietario" class="form-label">Propietario</label>
+            <input type="codigoPropietario" class="form-control" id="codigoPropietario" name="codigoPropietario" th:value="${vehiculo.propietario.codigo}" disabled="true">
           </div>
             <div class="col-1">
                 <a th:href="@{/propietarios/edit/}+${vehiculo.propietario.codigo}" href="/propietarios/edit.html" class="btn btn-primary">Cancelar</a>

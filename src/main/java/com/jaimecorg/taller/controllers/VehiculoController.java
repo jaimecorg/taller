@@ -140,7 +140,7 @@ public class VehiculoController {
 
     @PostMapping(path = { "/update" })
     public ModelAndView update(Vehiculo vehiculo) {
-
+        //Pasar el codigo de vehuculo como campo oculto en el edit para pasarlo aqui y el de propietario?
        // Recuperar el propietario existente del vehículo
         int propietarioIdExistente = vehiculoService.findByID(vehiculo.getCodigo()).getPropietario().getCodigo();
         

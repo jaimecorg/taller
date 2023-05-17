@@ -7,6 +7,10 @@
     <div class="container-fluid">
         <form class="row g-3" method="post" th:action="@{/mecanicos/update}">
             <div class="col-md-4">
+              <label for="codigo" class="form-label">Código</label>
+              <input type="codigo" class="form-control" id="codigo" name="codigo" th:value="${mecanico.codigo}" readonly>
+            </div>
+            <div class="col-md-4">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="nombre" class="form-control" id="nombre" name="nombre" th:value="${mecanico.nombre}">
             </div>
