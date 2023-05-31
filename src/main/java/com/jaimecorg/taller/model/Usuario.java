@@ -20,8 +20,8 @@ public class Usuario {
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_permission", joinColumns = @JoinColumn(name = "Usuario_codigo"), inverseJoinColumns = @JoinColumn(name = "Permiso_codigo"))
-    private List<Permiso> permissions;
+    @JoinTable(name = "usuario_permiso", joinColumns = @JoinColumn(name = "Usuario_codigo"), inverseJoinColumns = @JoinColumn(name = "Permiso_codigo"))
+    private List<Permiso> permisos;
     
     public Usuario() {
     }
@@ -87,12 +87,12 @@ public class Usuario {
         return true;
     }
 
-    public List<Permiso> getPermissions() {
-        return permissions;
+    public List<Permiso> getPermisos() {
+        return permisos;
     }
 
-    public void setPermissions(List<Permiso> permissions) {
-        this.permissions = permissions;
+    public void setPermisos(List<Permiso> permisos) {
+        this.permisos = permisos;
     }
 
     public void setCodigo(int codigo) {

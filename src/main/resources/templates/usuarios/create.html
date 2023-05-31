@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/header :: header"></head>
+<body>
+    <div th:replace="commons/menu :: menu"></div>
+    
+    <div class="container-fluid">
+        <form class="row g-3" method="post" th:action="@{/usuarios/save}">
+      
+            <div class="col-md-4">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="nombre" class="form-control" id="nombre" name="nombre">
+            </div>
+            <div class="col-md-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="text" class="form-control" id="password" name="password">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" name="email">
+            </div>
+            <div class="col-md-4">
+              <label for="permiso" class="form-label">Permiso</label>
+              <select class="form-select" id="permiso" name="permiso">
+                <option value="">Seleccione un permiso</option>
+                <option th:each="permiso : ${permisos}" th:value="${permiso.codigo}" th:text="${permiso.nombre}"></option>
+              </select>
+            </div>
+            <div class="col-1">
+                <a th:href="@{/usuarios/list}" href="list.html" class="btn btn-primary">Cancelar</a>
+            </div>
+            <div class="col-1">
+                <input type="submit" class="btn btn-primary" value="Crear"></input>
+            </div>
+        </form>
+    </div>
+
+    <div th:replace="commons/footer :: footer" class="container"></div>
+</body>
+</html>

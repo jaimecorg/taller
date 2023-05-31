@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/header :: header"></head>
+<body>
+    <div th:replace="commons/menu :: menu"></div>
+    
+    <div class="container-fluid">
+        <form class="row g-3" method="post" th:action="@{/usuarios/update}">
+            <div class="col-md-4">
+              <label for="codigo" class="form-label">Código</label>
+              <input type="codigo" class="form-control" id="codigo" name="codigo" th:value="${usuario.codigo}" readonly>
+            </div>
+            <div class="col-md-4">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="nombre" class="form-control" id="nombre" name="nombre" th:value="${usuario.nombre}">
+            </div>
+            <div class="col-md-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="text" class="form-control" id="password" name="password" th:value="${usuario.password}">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" name="email" th:value="${usuario.email}">
+            </div>
+            <div class="mb-3">
+              <label for="permisos" class="form-label">Permisos</label>
+              <input type="permisos" class="form-control" id="permisos" name="permisos" th:value="${usuario.permisos}">
+            </div>
+            <div class="col-1">
+                <a th:href="@{/usuarios/list}" href="list.html" class="btn btn-primary">Cancelar</a>
+            </div>
+            <div class="col-1">
+                <input type="submit" class="btn btn-primary" value="Actualizar"></input>
+            </div>
+        </form>        
+    </div>
+   
+    <div th:replace="commons/footer :: footer" class="container"></div>
+</body>
+</html>

@@ -2,34 +2,19 @@ package com.jaimecorg.taller.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.jaimecorg.taller.model.Permiso;
-import com.jaimecorg.taller.repository.PermisoRepository;
 
-@Service
-public class PermisoService {
-    @Autowired
-    private PermisoRepository permissionRepository;
+public interface PermisoService {
 
-    public Permiso createPermiso(Permiso permission) {
-        return permissionRepository.save(permission);
-    }
+    public List<Permiso> findAll();
 
-    public Permiso updatePermiso(Permiso permission) {
-        return permissionRepository.save(permission);
-    }
+    public Permiso findByID(int codigo);
 
-    public void deletePermiso(Integer permissionId) {
-        permissionRepository.deleteById(permissionId);
-    }
+    public Permiso insert(Permiso permiso);
 
-    public Permiso getPermiso(Integer permissionId) {
-        return permissionRepository.findById(permissionId).orElse(null);
-    }
+    public void update(Permiso permiso);
 
-    public List<Permiso> getAllPermisos() {
-        return permissionRepository.findAll();
-    }
+    public void delete(int codigo);
+
+    
 }

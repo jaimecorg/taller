@@ -1,4 +1,4 @@
-package com.jaimecorg.taller.repository;
+/* package com.jaimecorg.taller.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,3 +10,4 @@ public interface PermisoRepository extends JpaRepository<Permiso, Integer>{
     
 }
 
+ */
