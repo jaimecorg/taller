@@ -1,6 +1,7 @@
 package com.jaimecorg.taller.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jaimecorg.taller.model.Permiso;
@@ -50,8 +52,24 @@ public class UsuarioController {
     }
 
     @PostMapping(path = "/save")
-    public ModelAndView save(Usuario usuario) throws IOException{
+    public ModelAndView save(Usuario usuario, @RequestParam(name="permisosSeleccionados") int[] permisosSeleccionados) throws IOException{
 
+        List<Permiso> permisos = new ArrayList<Permiso>();
+        //List<Permiso> allPermisos = permisoService.findAll();
+
+
+        for(int codigo : permisosSeleccionados){
+            // int index = allPermisos.indexOf(new Permiso(codigo));
+
+            // if(index != -1){
+            //     permisos.add(allPermisos.get(index));
+            // }
+
+            permisos.add(permisoService.findByID(codigo));
+
+        }
+
+        usuario.setPermisos(permisos);
         Usuario us = service.insert(usuario);
 
         ModelAndView modelAndView = new ModelAndView();
