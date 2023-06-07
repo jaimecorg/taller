@@ -83,18 +83,6 @@ public class ReparacionController {
         return modelAndView;
     }
 
-    // @GetMapping(value = "/create")
-    // public ModelAndView create(Reparacion reparacion) {
-
-    //     List<Mecanico> mecanicos = mecanicoService.findAll();
-    //     ModelAndView modelAndView = new ModelAndView();
-    //     modelAndView.addObject("reparacion", new Reparacion());
-    //     modelAndView.addObject("mecanicos", mecanicos);
-    //     modelAndView.setViewName("reparaciones/create");
-
-    //     return modelAndView;
-    // }
-
     @GetMapping(value = "/create/{codigo}")
     public ModelAndView createConVehiculo(
         @PathVariable(name = "codigo", required = true) int codigo) {

@@ -10,12 +10,12 @@
                 <label for="vehiculo" class="form-label">Vehículo</label>
                 <input type="text" class="form-control" id="vehiculo" name="vehiculo">
               </div> -->
-              <div class="col-md-4">
-                <label for="mecanico" class="form-label">Mecánico</label>
-                <select class="form-select" id="mecanico" name="mecanico">
-                  <option value="">Seleccione un mecánico</option>
-                  <option th:each="mecanico : ${mecanicos}" th:value="${mecanico.codigo}" th:text="${mecanico.nombre + ' ' + mecanico.apellidos}"></option>
-                </select>
+            <div class="col-md-4">
+              <label for="mecanico" class="form-label">Mecánico</label>
+              <select class="form-select" id="mecanico" name="mecanico">
+                <option value="">Seleccione un mecánico</option>
+                <option th:each="mecanico : ${mecanicos}" th:value="${mecanico.codigo}" th:text="${mecanico.nombre + ' ' + mecanico.apellidos}"></option>
+              </select>
             </div>
             <div class="col-md-4">
                 <label for="fechaEntrada" class="form-label">Fecha entrada</label>

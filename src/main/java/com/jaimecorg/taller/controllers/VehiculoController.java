@@ -114,7 +114,6 @@ public class VehiculoController {
     public ModelAndView save(Vehiculo vehiculo, 
                             @RequestParam("propietarioCodigo") int propietarioCodigo) throws IOException {
 
-
         Propietario propietario = propietarioService.findByID(propietarioCodigo);
         vehiculo.setPropietario(propietario);
 
