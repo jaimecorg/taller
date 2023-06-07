@@ -12,7 +12,7 @@ public class Permiso {
     @Id
     @GeneratedValue
     private int codigo;
-    private String nombre;
+    private String descripcion;
 
     @ManyToMany(mappedBy = "permisos")
     private List<Usuario> usuarios;
@@ -24,9 +24,9 @@ public class Permiso {
         this.codigo = codigo;
     }
 
-    public Permiso(int codigo, String nombre) {
+    public Permiso(int codigo, String descripcion) {
         this.codigo = codigo;
-        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public int getCodigo() {
@@ -37,12 +37,12 @@ public class Permiso {
         this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override

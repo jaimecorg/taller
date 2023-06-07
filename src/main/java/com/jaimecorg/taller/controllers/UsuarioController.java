@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jaimecorg.taller.model.Permiso;
 import com.jaimecorg.taller.model.Usuario;
+import com.jaimecorg.taller.services.PermisoService;
 import com.jaimecorg.taller.services.UsuarioService;
 
 @Controller
@@ -20,6 +22,9 @@ import com.jaimecorg.taller.services.UsuarioService;
 public class UsuarioController {
     @Autowired
     UsuarioService service;
+
+    @Autowired
+    PermisoService permisoService;
 
     @GetMapping(value = "/list")
     public ModelAndView list(Model model) {
@@ -31,12 +36,14 @@ public class UsuarioController {
         return modelAndView;
     }
 
-
     @GetMapping(value = "/create")
     public ModelAndView create(Usuario usuario) {
 
+        List<Permiso> permisos = permisoService.findAll();
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("usuario", new Usuario());
+        modelAndView.addObject("permisos", permisos);
         modelAndView.setViewName("usuarios/create");
 
         return modelAndView;
@@ -62,6 +69,7 @@ public class UsuarioController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("usuario", usuario);
         modelAndView.setViewName("usuarios/edit");
+
         return modelAndView;
     }
 
