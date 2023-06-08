@@ -22,19 +22,17 @@
               <label for="email" class="form-label">E-mail</label>
               <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" name="email" th:value="${usuario.email}">
             </div>
-            <div class="mb-3">
-              <label for="permisos" class="form-label">Permisos:</label>
-              <input type="permisos" class="form-control" id="permisos" name="permisos" th:value="${usuario.permisos}">
-            </div>
+
             <div class="col-md-4">
-                <label class="form-label">Permisos: </label>
-                <div class="form-check form-switch">
-                  <label th:each="permiso : ${permisos}" th:for="${'permiso-' + permiso.codigo}">
-                    <input type="checkbox" th:value="${permiso.codigo}" name="permisosSeleccionados" />
-                    <span th:text="${permiso.descripcion}"></span>
-                  </label>
-                </div>
-            </div> 
+              <label class="form-label">Permisos:</label>
+              <div class="form-check form-switch">
+                <label th:each="permiso : ${permisos}">
+                  <input type="checkbox" th:value="${permiso.codigo}" name="permisosSeleccionados" th:checked="${permisosSeleccionados != null and #lists.contains(permisosSeleccionados, permiso)}" />
+                  <span th:text="${permiso.descripcion}"></span>
+                </label>
+              </div>
+            </div>
+            
             <div class="col-1">
                 <a th:href="@{/usuarios/list}" href="list.html" class="btn btn-primary">Cancelar</a>
             </div>

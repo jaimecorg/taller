@@ -31,7 +31,7 @@
             </button>
             <div class="dropdown-menu">
               <!-- bucle para crear las opciones del dropdown list -->
-              <a th:each="permiso : ${usuario.permisos}" th:href="@{/permisos/list/}+${permiso.codigo}" class="dropdown-item" th:text="${permiso.descripcion}"></a>
+              <a th:each="permiso : ${usuario.permisos}" th:href="@{/permisos/edit/}+${permiso.codigo}" class="dropdown-item" th:text="${permiso.descripcion}"></a>
             </div>
           </div> 
         </td>  

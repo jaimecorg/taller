@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,15 +84,22 @@ public class UsuarioController {
             @PathVariable(name = "codigo", required = true) int codigo) {
 
         Usuario usuario = service.findByID(codigo);
+
+        List<Permiso> permisos = permisoService.findAll();
+        List<Permiso> permisosSeleccionados = usuario.getPermisos();
+
                 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("usuario", usuario);
+        modelAndView.addObject("permisosSeleccionados", permisosSeleccionados);
+        modelAndView.addObject("permisos", permisos);
+
         modelAndView.setViewName("usuarios/edit");
 
         return modelAndView;
     }
 
-    @PostMapping(path = { "/update" })
+    /* @PostMapping(path = { "/update" })
     public ModelAndView update(Usuario usuario) {
 
         service.update(usuario);
@@ -100,7 +108,30 @@ public class UsuarioController {
         modelAndView.setViewName("redirect:edit/" + usuario.getCodigo());
         
         return modelAndView;
+    } */
+
+    @PostMapping(path = { "/update" })
+    public ModelAndView update(@ModelAttribute("usuario") Usuario usuario,
+                            @RequestParam(name = "permisosSeleccionados", required = false) int[] permisosSeleccionados) {
+
+        List<Permiso> permisos = new ArrayList<>();
+
+        if (permisosSeleccionados != null) {
+            for (int codigoPermiso : permisosSeleccionados) {
+                Permiso permiso = permisoService.findByID(codigoPermiso);
+                permisos.add(permiso);
+            }
+        }
+
+        usuario.setPermisos(permisos);
+        service.update(usuario);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:edit/" + usuario.getCodigo());
+
+        return modelAndView;
     }
+
 
     @GetMapping(path = { "/delete/{codigo}" })
     public ModelAndView delete(
