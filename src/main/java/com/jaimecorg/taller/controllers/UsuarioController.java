@@ -99,17 +99,6 @@ public class UsuarioController {
         return modelAndView;
     }
 
-    /* @PostMapping(path = { "/update" })
-    public ModelAndView update(Usuario usuario) {
-
-        service.update(usuario);
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:edit/" + usuario.getCodigo());
-        
-        return modelAndView;
-    } */
-
     @PostMapping(path = { "/update" })
     public ModelAndView update(@ModelAttribute("usuario") Usuario usuario,
                             @RequestParam(name = "permisosSeleccionados", required = false) int[] permisosSeleccionados) {
