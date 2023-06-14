@@ -26,8 +26,6 @@ public class SecurityConfig {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-
-
     @Bean
     public UserDetailsService user(){
 

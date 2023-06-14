@@ -53,7 +53,7 @@ public class UsuarioService implements UserDetailsService{
     }
 
     public void update(Usuario usuario) {
-        usuario.setPassword(encoder.encode(usuario.getPassword()));
+        //usuario.setPassword(encoder.encode(usuario.getPassword()));
         
         restTemplate.put(urlSeguridad + "usuarios/" + usuario.getCodigo(), usuario, Usuario.class);
     }
@@ -65,7 +65,7 @@ public class UsuarioService implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Usuario usuario = restTemplate.getForObject(urlSeguridad + "usuarios/usuario/" + username, Usuario.class);
+        Usuario usuario = restTemplate.getForObject(urlSeguridad + "usuarios/buscar/" + username, Usuario.class);
         List<GrantedAuthority> permisos = new ArrayList<GrantedAuthority>();
 
         if (usuario.getPermisos() != null) {

@@ -49,7 +49,5 @@ public class PermisoServiceImpl implements PermisoService{
     @Override
     public void delete(int codigo) {
         restTemplate.delete(urlSeguridad + "permisos/" + codigo);
-    }
-
-    
+    }    
 }

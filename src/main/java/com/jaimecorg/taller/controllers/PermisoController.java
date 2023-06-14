@@ -18,7 +18,7 @@ import com.jaimecorg.taller.services.PermisoService;
 @Controller
 @RequestMapping("/permisos")
 public class PermisoController {
-    //Crear el controller y preguntar porque no sle el nombre del permiso en usuario y sí el código
+
     @Autowired
     PermisoService service;
 

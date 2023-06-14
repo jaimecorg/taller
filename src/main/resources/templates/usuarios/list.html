@@ -13,28 +13,15 @@
       <tr>
         <th scope="col">Código</th>
         <th scope="col">Nombre</th>
-        <th scope="col">Password</th>
         <th scope="col">E-mail</th>
-        <th scope="col">Permisos</th>
       </tr>
     </thead>
     <tbody class="table-group-divider">
       <tr th:each="usuario : ${usuarios}" class="col-3">
         <th scope="row" th:text="${usuario.codigo}">1</th>
         <td th:text="${usuario.nombre}">Juan</td>
-        <td th:text="${usuario.password}">Gómez Sánchez</td>
         <td th:text="${usuario.email}">24785896H</td>
-        <td>
-          <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-              Permisos
-            </button>
-            <div class="dropdown-menu">
-              <!-- bucle para crear las opciones del dropdown list -->
-              <a th:each="permiso : ${usuario.permisos}" th:href="@{/permisos/edit/}+${permiso.codigo}" class="dropdown-item" th:text="${permiso.descripcion}"></a>
-            </div>
-          </div> 
-        </td>  
+        
         <td>
           <a th:href="@{/usuarios/edit/}+${usuario.codigo}" href="edit.html">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
