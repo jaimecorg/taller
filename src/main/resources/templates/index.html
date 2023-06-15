@@ -14,7 +14,7 @@
                         <h3>¡Hola!</h3>
                         <span sec:authorize="isAuthenticated()">
                             Logged user: <span sec:authentication="name"></span>
-                            Roles: <span sec:authentication="principal.authorities"></span>
+                            <!-- Roles: <span sec:authentication="principal.authorities"></span> -->
                             <a th:href="@{/logout}">Sign out</a>
                         </span>
                     </div>
